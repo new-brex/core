@@ -1,6 +1,6 @@
 import { getRealms, ProgramAccount, Realm } from "@solana/spl-governance";
 import { PublicKey } from "@solana/web3.js";
-import { Proposal, Transaction } from "../core/types";
+import { Proposal, Transaction } from "../types/objects";
 import { getUniqueKeys } from "../utils/helpers";
 import { ConnectionContext } from "./connection";
 import { devnetRealms } from "./devnet";
