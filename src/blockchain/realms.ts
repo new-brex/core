@@ -1,9 +1,18 @@
-import { getRealms, ProgramAccount, Realm } from "@solana/spl-governance";
+import {
+  getAllGovernances,
+  getNativeTreasuryAddress,
+  getRealms,
+  ProgramAccount,
+  Realm,
+} from "@solana/spl-governance";
 import { PublicKey } from "@solana/web3.js";
 import { Proposal, Transaction } from "../types/objects";
 import { getUniqueKeys } from "../utils/helpers";
 import { ConnectionContext } from "./connection";
 import { devnetRealms } from "./devnet";
+import { mainnetRealms } from "./mainnet";
+
+const REALM_PROGRAM_ID = "GovER5Lthms3bLBqWub97yVrMmEogzX7xNjdXpPPCVZw";
 
 /**
  * Query for all realms–used to display realms on home screen.
@@ -11,8 +20,12 @@ import { devnetRealms } from "./devnet";
 export async function getAllRealms(
   context: ConnectionContext
 ): Promise<ProgramAccount<Realm>[]> {
+  const realms =
+    context.endpointType === "devnet" ? devnetRealms : mainnetRealms;
+
   const uniqueProgramIDs: string[] = getUniqueKeys(
-    devnetRealms,
+    //@ts-ignore
+    realms,
     (realm) => realm.programId
   );
 
@@ -32,7 +45,31 @@ export async function getAllRealms(
 /**
  * Given a realm, pull all of its blockchain-based balance information
  */
-export async function getRealmBalancess(realm: Realm) {}
+export async function getRealmBalances(
+  context: ConnectionContext,
+  realm: ProgramAccount<Realm>
+) {
+  const governances = await getAllGovernances(
+    context.connection,
+    new PublicKey(REALM_PROGRAM_ID),
+    realm.pubkey
+  );
+
+  const solAddresses = await Promise.all(
+    governances.map((gov) =>
+      getNativeTreasuryAddress(new PublicKey(REALM_PROGRAM_ID), gov.pubkey)
+    )
+  );
+
+  const balances = await Promise.all(
+    solAddresses.map(async (address) => [
+      address,
+      await context.connection.getBalance(new PublicKey(address)),
+    ])
+  );
+
+  return balances;
+}
 
 /**
  * Given a realm, return all transactions (blockchain-based) and relevant
