@@ -14,10 +14,13 @@ export const createCard = async (
     {
       name: 'Ajay Raj',
       email: 'ajay@newbrex.com',
-      phoneNumber: '8000000000',
+      phone_number: '8000000000',
     },
     {
       line1: '1 Hacker Way',
+      city: 'Menlo Park',
+      country: 'US',
+      postal_code: '94306'
     }
   );
 }
@@ -25,7 +28,7 @@ export const createCard = async (
 /**
  * Creates a bank account.
  */
-export const createBankAccount = async (stripeAccountId: string): Promise<stripe.FinancialAccount> => {
+export const createBankAccount = async (stripeAccountId: string) => {
   return await stripe.createFinancialAccount(stripeAccountId);
 }
 
@@ -36,6 +39,16 @@ export async function fundFinancialAccount(stripeAccountId: string, financialAcc
   return await stripe.testFundFinancialAccount(stripeAccountId, financialAccountId);
 }
 
-export const registerDAOWithStripe = async (): Promise<stripe.StripeAccount> => {
-  return await stripe.createUser();
+export const registerDAOWithStripe = async () => {
+  const account = await stripe.createUser();
+  const updatedAccount = await stripe.verifyUser(account.id);
+  return updatedAccount;
+}
+
+export const isAccountVerified = async (stripeAccountId: string) => {
+  return await stripe.getUser(stripeAccountId);
+}
+
+export const getFinancialAccount = async (financialAccountId: string, stripeAccountId: string) => {
+  return await stripe.getFinancialAccount(financialAccountId, stripeAccountId);
 }
