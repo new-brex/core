@@ -128,6 +128,11 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.6.3.tgz#4e4a95b6fe44014563ceb514b2598b3e623d1c98"
   integrity sha512-6qKpDtoaYLM+5+AFChLhHermMQxc3TOEFIDzrZLPRGHPrLEwqFkkT5Kx3ju05g6X7uDPazz3jHbKPX0KzCjntg==
 
+"@types/node@>=8.1.0":
+  version "18.6.5"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.6.5.tgz#06caea822caf9e59d5034b695186ee74154d2802"
+  integrity sha512-Xjt5ZGUa5WusGZJ4WJPbOT8QOqp6nDynVFRKcUt32bOgvXEoc6o085WNkYTMO7ifAj2isEfQQ2cseE+wT6jsRw==
+
 "@types/node@^12.12.54":
   version "12.20.55"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.20.55.tgz#c329cbd434c42164f846b909bd6f85b5537f6240"
@@ -159,6 +164,11 @@
   dependencies:
     "@types/mime" "*"
     "@types/node" "*"
+
+"@types/stripe-v3@^3.1.27":
+  version "3.1.27"
+  resolved "https://registry.yarnpkg.com/@types/stripe-v3/-/stripe-v3-3.1.27.tgz#f0cc9af7edc67d90665224f726d6dead90465dc8"
+  integrity sha512-lsOXNRfYyzz45HW4FXXKWsx/6d2BpwDSYcmwLZOS81XarHFQFTqiqVq1bsLMebKgEz7+qQ2LLAPhmn8StQbi8w==
 
 "@types/ws@^7.4.4":
   version "7.4.7"
@@ -1071,6 +1081,13 @@ qs@6.10.3:
   dependencies:
     side-channel "^1.0.4"
 
+qs@^6.10.3:
+  version "6.11.0"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.11.0.tgz#fd0d963446f7a65e1367e01abd85429453f0c37a"
+  integrity sha512-MvjoMCJwEarSbUYk5O+nmoSzSutSsTwF85zcHPQ9OrlFoZOYIjaqBAJIqIXjptyD5vThxGq52Xu/MaJzRkIk4Q==
+  dependencies:
+    side-channel "^1.0.4"
+
 range-parser@~1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.1.tgz#3cf37023d199e1c24d1a55b84800c2f3e6468031"
@@ -1244,6 +1261,14 @@ strip-ansi@^6.0.0, strip-ansi@^6.0.1:
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
   dependencies:
     ansi-regex "^5.0.1"
+
+stripe@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/stripe/-/stripe-10.0.0.tgz#0368c7bd91724dc878007ef6fd88a103a258339a"
+  integrity sha512-Tk40Q6eZVQbghG6RVhT6oTiL95MZR58QA1/de+q94pfKxaMHiuLE1p1SGHqfPzAZEFAXoxiPVkGVLTfPKlXDLA==
+  dependencies:
+    "@types/node" ">=8.1.0"
+    qs "^6.10.3"
 
 superstruct@^0.14.2:
   version "0.14.2"
