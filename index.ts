@@ -51,11 +51,6 @@ async function main() {
   app.listen(port, () => {
     console.log(`⚡️[server]: Server is running at https://localhost:${port}`);
   });
-
-  console.log("Seeding DB");
-  const seedQuery = readFileSync("./src/database/seeding.sql", {
-    encoding: "utf-8",
-  });
 }
 
 main();
