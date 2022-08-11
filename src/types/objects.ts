@@ -15,3 +15,8 @@ export interface Transaction {}
  * Abstraction for any blockchain-based entity (ex. a Realm)
  */
 export interface DAO {}
+
+export interface MultiSigDetails {}
+
+export type CardType = "debit" | "credit";
+export type ProposalStatus = "pending" | "approved" | "rejected";
