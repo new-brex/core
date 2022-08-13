@@ -16,7 +16,7 @@ export interface ConnectionContext {
 const ENDPOINTS: Endpoint[] = [
   {
     endpointType: "mainnet",
-    url: process.env.MAINNET_RPC || "https://api.dao.solana.com/",
+    url: process.env.MAINNET_RPC || "https://api.mainnet-beta.solana.com",
   },
   {
     endpointType: "devnet",
