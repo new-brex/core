@@ -1,18 +1,21 @@
 import {
   getAllGovernances,
+  getAllProposals,
   getNativeTreasuryAddress,
   getRealms,
   ProgramAccount,
   Realm,
 } from "@solana/spl-governance";
-import { PublicKey } from "@solana/web3.js";
+import { PublicKey, Transaction as SolanaTransaction } from "@solana/web3.js";
 import { Proposal, Transaction } from "../types/objects";
 import { getUniqueKeys } from "../utils/helpers";
 import { ConnectionContext } from "./connection";
 import { devnetRealms } from "./devnet";
 import { mainnetRealms } from "./mainnet";
 
-const REALM_PROGRAM_ID = "GovER5Lthms3bLBqWub97yVrMmEogzX7xNjdXpPPCVZw";
+const REALM_PROGRAM_ID = new PublicKey(
+  "GovER5Lthms3bLBqWub97yVrMmEogzX7xNjdXpPPCVZw"
+);
 
 /**
  * Query for all realms–used to display realms on home screen.
@@ -51,13 +54,13 @@ export async function getRealmBalances(
 ) {
   const governances = await getAllGovernances(
     context.connection,
-    new PublicKey(REALM_PROGRAM_ID),
+    REALM_PROGRAM_ID,
     realm.pubkey
   );
 
   const solAddresses = await Promise.all(
     governances.map((gov) =>
-      getNativeTreasuryAddress(new PublicKey(REALM_PROGRAM_ID), gov.pubkey)
+      getNativeTreasuryAddress(REALM_PROGRAM_ID, gov.pubkey)
     )
   );
 
@@ -76,9 +79,24 @@ export async function getRealmBalances(
  * proposals.
  */
 export async function getRealmTransactions(
-  realm: Realm
+  context: ConnectionContext,
+  realm: ProgramAccount<Realm>
 ): Promise<Transaction[]> {
-  return [];
+  const allProposals = await getAllProposals(
+    context.connection,
+    REALM_PROGRAM_ID,
+    realm.pubkey
+  );
+
+  const proposalTransactions = allProposals.flatMap((govProposals) =>
+    govProposals.map((proposal) => {
+      return {
+        name: proposal.account.name,
+      };
+    })
+  );
+
+  return proposalTransactions;
 }
 
 /**
