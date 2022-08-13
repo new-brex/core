@@ -9,6 +9,8 @@ import {
 import { Database } from "./src/database/database";
 import { readFileSync } from "fs";
 import { getDAOs, getDAO } from './src/core/core';
+import cors from "cors";
+
 
 
 dotenv.config();
@@ -18,6 +20,8 @@ const port = process.env.PORT;
 
 const context: ConnectionContext = establishConnection("devnet");
 const db: Database = new Database();
+
+app.use(cors())
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server is cool");
