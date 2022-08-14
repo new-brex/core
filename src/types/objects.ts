@@ -13,6 +13,7 @@ export interface Transaction {}
 
 export interface ProposalTransaction extends Transaction {
   name: string;
+  description: string;
 }
 
 /**

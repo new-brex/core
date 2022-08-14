@@ -92,6 +92,7 @@ export async function getRealmTransactions(
     govProposals.map((proposal) => {
       return {
         name: proposal.account.name,
+        description: proposal.account.descriptionLink,
       };
     })
   );
@@ -106,3 +107,12 @@ export async function submitProposal(
   context: ConnectionContext,
   proposal: Proposal
 ) {}
+
+export async function getDAOByName(
+  context: ConnectionContext,
+  name: string
+): Promise<ProgramAccount<Realm> | null> {
+  const realms = await getAllRealms(context);
+  const realm = realms.filter((realm) => realm.account.name === name);
+  return realm.length > 0 ? realm[0] : null;
+}
