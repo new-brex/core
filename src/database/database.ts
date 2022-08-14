@@ -23,10 +23,12 @@ export class Database {
     return result;
   }
 
-  async createDAO(chainID: string, name: string) {
+  async createDAO(chainID: string, name: string): Promise<string> {
     const id: string = randomUUID();
-    var query: string = `INSERT INTO DAO (ID, CHAIN_ID, NAME) VALUES ('${id}', '${chainID}', '${name}')`;
-    this.query(query);
+    var query: string = `INSERT INTO DAO (ID, CHAIN_ID, NAME) VALUES ('${id}', '${chainID}', '${name}') RETURNING ID`;
+    const result = await this.query(query);
+
+    return result.rows[0].id;
   }
 
   async createBankAccount(daoID: string, multiSigDetails: MultiSigDetails) {
@@ -52,5 +54,17 @@ export class Database {
     const id: string = randomUUID();
     var query: string = `INSERT INTO PROPOSAL (ID, DAO_ID, OPTIONS, PROPOSAL_STATUS) VALUES ('${id}', '${daoID}', '${requestOptions}', '${status}')`;
     this.query(query);
+  }
+
+  async getDAOBankAccounts(daoID: string) {
+    var query: string = `SELECT * FROM BANK_ACCOUNT WHERE DAO_ID = '${daoID}'`;
+    const result = await this.query(query);
+    return result.rows;
+  }
+
+  async getDAOCards(daoID: string) {
+    var query: string = `SELECT * FROM CARD WHERE DAO_ID = '${daoID}'`;
+    const result = await this.query(query);
+    return result.rows;
   }
 }
