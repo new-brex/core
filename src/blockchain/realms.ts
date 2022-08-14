@@ -80,8 +80,12 @@ export async function getRealmBalances(
  */
 export async function getRealmTransactions(
   context: ConnectionContext,
-  realm: ProgramAccount<Realm>
+  realm: ProgramAccount<Realm> | null
 ): Promise<Transaction[]> {
+  if (!realm) {
+    return [];
+  }
+
   const allProposals = await getAllProposals(
     context.connection,
     REALM_PROGRAM_ID,
@@ -114,5 +118,6 @@ export async function getDAOByName(
 ): Promise<ProgramAccount<Realm> | null> {
   const realms = await getAllRealms(context);
   const realm = realms.filter((realm) => realm.account.name === name);
+
   return realm.length > 0 ? realm[0] : null;
 }

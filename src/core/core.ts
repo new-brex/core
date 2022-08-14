@@ -3,12 +3,13 @@ import { CreateProposalRequest } from "../types/requestTypes";
 import { devnetRealms } from "../blockchain/devnet";
 import { mainnetRealms } from "../blockchain/mainnet";
 import { DAO } from "../types/objects";
-import { getRealmTransactions } from "../blockchain/realms";
+import { getDAOByName, getRealmTransactions } from "../blockchain/realms";
+import { establishConnection } from "../blockchain/connection";
 
 /**
  * Creates a proposal.
  */
-export async function createProposal(request: CreateProposalRequest) {}
+export async function createProposal(request: CreateProposalRequest) { }
 
 /**
  * Returns all daos
@@ -69,8 +70,28 @@ export async function getDAO(
  * Returns all transactions for a given DAO:
  * - On chain transactions (TODO)
  * - Proposals
- * - Bank account/virtual card transactions
+ * - Bank account/virtual card transactions (TODO)
+ * 
+ * Currently returns just on chain proposals
  */
-export async function getTransactions() {
+export async function getTransactions(
+  req: Request<{}, {}, {}, { daoName: string }>,
+  res: Response
+) {
   // use getRealmTransactions() to get proposals + on chain transactions (TODO)
+  try {
+    const { daoName } = req.query;
+    const context = establishConnection("devnet");
+    const realm = await getDAOByName(context, daoName);
+    const transactions = await getRealmTransactions(context, realm);
+
+    return res.status(200).send({
+      transactions
+    });
+  } catch (err) {
+    console.log('ERROR:', err)
+    return res.status(500).send({
+      Error: err
+    })
+  }
 }
