@@ -31,6 +31,7 @@ export interface DAO {
   keywords?: string | undefined;
   twitter?: string | undefined;
   website?: string | undefined;
+  description?: string | undefined;
 }
 
 export interface MultiSigDetails {}

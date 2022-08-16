@@ -78,7 +78,6 @@ export async function getTransactions(
   req: Request<{}, {}, {}, { daoName: string }>,
   res: Response
 ) {
-  // use getRealmTransactions() to get proposals + on chain transactions (TODO)
   try {
     const { daoName } = req.query;
     const context = establishConnection("devnet");

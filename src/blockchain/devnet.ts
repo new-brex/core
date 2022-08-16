@@ -17,6 +17,7 @@ export const devnetRealms = [
     twitter: "@mangomarkets",
     ogImage: "https://trade.mango.markets/assets/icons/logo.svg",
     notificationsEnabled: true,
+    description: 'Mango Markets provides a single venue to lend, borrow, swap, and leverage-trade crypto assets through a powerful risk engine.'
   },
   {
     symbol: "SOCEAN",
