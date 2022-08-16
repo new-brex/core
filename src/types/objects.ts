@@ -32,6 +32,7 @@ export interface DAO {
   twitter?: string | undefined;
   website?: string | undefined;
   description?: string | undefined;
+  discord?: string | undefined;
 }
 
 export interface MultiSigDetails {}
