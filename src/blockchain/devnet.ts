@@ -27,6 +27,7 @@ export const devnetRealms = [
     website: "https://empiredao.xyz/",
     keywords: "Coworking Hub, Incubator, Bowery, Soho, DAO, devs",
     twitter: "@EmpireDao",
+    discord: "https://discord.com/invite/CVZSXQbeRZ",
     ogImage: "https://pbs.twimg.com/profile_images/1481694682421858309/jzHr1rSE_400x400.jpg",
     notificationsEnabled: true,
     description: "NYC's multi-chain web3 cultural DAO for builders and creators"
