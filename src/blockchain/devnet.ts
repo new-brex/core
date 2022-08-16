@@ -20,6 +20,18 @@ export const devnetRealms = [
     description: 'Mango Markets provides a single venue to lend, borrow, swap, and leverage-trade crypto assets through a powerful risk engine.'
   },
   {
+    symbol: "EMPIRE",
+    displayName: "EmpireDAO",
+    programId: "GovER5Lthms3bLBqWub97yVrMmEogzX7xNjdXpPPCVZw",
+    realmId: "H2iny4dUP2ngt9p4niUWVX4TKvr1h9eSWGNdP1zvwzNQ",
+    website: "https://empiredao.xyz/",
+    keywords: "Coworking Hub, Incubator, Bowery, Soho, DAO, devs",
+    twitter: "@EmpireDao",
+    ogImage: "https://pbs.twimg.com/profile_images/1481694682421858309/jzHr1rSE_400x400.jpg",
+    notificationsEnabled: true,
+    description: "NYC's multi-chain web3 cultural DAO for builders and creators"
+  },
+  {
     symbol: "SOCEAN",
     programId: "GSCN8n6XUGqPqoeubY5GM6e3JgtXbzTcpCUREQ1dVXFG",
     realmId: "4Z6bAwcBkDg8We6rRdnqK9rjsJz3aMqXAZkpoBZ3hxus",
