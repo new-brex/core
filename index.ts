@@ -8,7 +8,7 @@ import {
 } from "./src/blockchain/connection";
 import { Database } from "./src/database/database";
 import { readFileSync } from "fs";
-import { getDAOs, getDAO, getTransactions } from "./src/core/core";
+import { getDAOs, getDAO, getTransactions, getAllRealmsFromDevnet } from "./src/core/core";
 import cors from "cors";
 
 async function main() {
@@ -54,6 +54,7 @@ async function main() {
 
   app.get("/daos", getDAOs);
   app.get("/dao", getDAO);
+  app.get("/realmsFromDevnet", getAllRealmsFromDevnet);
   app.get("/transactions", getTransactions);
 
   app.listen(port, () => {

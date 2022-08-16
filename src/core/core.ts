@@ -3,7 +3,7 @@ import { CreateProposalRequest } from "../types/requestTypes";
 import { devnetRealms } from "../blockchain/devnet";
 import { mainnetRealms } from "../blockchain/mainnet";
 import { DAO } from "../types/objects";
-import { getDAOByName, getRealmTransactions } from "../blockchain/realms";
+import { getDAOByName, getRealmTransactions, getAllRealms } from "../blockchain/realms";
 import { establishConnection } from "../blockchain/connection";
 
 /**
@@ -59,6 +59,22 @@ export async function getDAO(
       endpointType,
       realms: matchedRealms,
     });
+  } catch (err) {
+    return res.status(500).send({
+      Error: err,
+    });
+  }
+}
+
+export async function getAllRealmsFromDevnet(req: Request, res: Response) {
+  try {
+    const context = establishConnection('devnet');
+    const allRealms = await getAllRealms(context);
+
+    return res.send({
+      allRealms
+    });
+    
   } catch (err) {
     return res.status(500).send({
       Error: err,

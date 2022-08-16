@@ -23,7 +23,7 @@ export const devnetRealms = [
     symbol: "EMPIRE",
     displayName: "EmpireDAO",
     programId: "GovER5Lthms3bLBqWub97yVrMmEogzX7xNjdXpPPCVZw",
-    realmId: "H2iny4dUP2ngt9p4niUWVX4TKvr1h9eSWGNdP1zvwzNQ",
+    realmId: "6Ffasv4dQ8ZeRbZXZx2tiHcgJh5Y5VELmxnA7Qh1RWRg",
     website: "https://empiredao.xyz/",
     keywords: "Coworking Hub, Incubator, Bowery, Soho, DAO, devs",
     twitter: "@EmpireDao",
